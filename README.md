@@ -1,6 +1,6 @@
-# we-plugin-payment-order
+# We.js payment plugin
 
-> [write something about your plugin here]
+In development ...
 
 # API
 
@@ -9,6 +9,6 @@
 
 > * We.js site: http://wejs.org
 
-#Copyright and license
+## License
 
-Copyright 2013-2015 [your name] <[your email@email]> and contributors , under [the MIT license](LICENSE).
+Under [the MIT license](https://github.com/wejs/we/blob/master/LICENSE.md)
