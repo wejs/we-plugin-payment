@@ -2,8 +2,11 @@
 
 In development ...
 
-# API
+## Installation
 
+```sh
+we i we-plugin-payment
+```
 
 ## Links
 

@@ -3,30 +3,37 @@ Pay
 </div>
 
 <div class="cart-orders">
+
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th>{{t 'actions'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
 {{#each data}}
 <div class="cart-order">
+  <tr>
+    <td>{{id}}</td>
+    <td>{{total}}</td>
+    <td>{{status}}</td>
+    <td>
+      Close and pay
+    </td>
+  </tr>
 
-  #{{id}}
 
-  {{we-action-view-btn ../resourceName this ../req id}}
-  {{we-action-edit-btn ../resourceName this ../req id}}
-  {{we-action-delete-btn ../resourceName this ../req id}}
-
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>{{t 'actions'}}</th>
-      </tr>
-    </thead>
-    <tbody>
-
-  {{#each processes}}
-    <tr>
-      <td>{{id}}</td>
-      <td></td>
-    </tr>
-  {{/each}}
+</div>
+{{else}}
+  0 products in this cart
+</div>
+{{/each}}
 
     </tbody>
     <tfoot>
@@ -36,9 +43,4 @@ Pay
     </tfoot>
   </table>
 
-</div>
-{{else}}
-  0 products in this cart
-</div>
-{{/each}}
 </div>

@@ -24,6 +24,27 @@ module.exports = function (we) {
         type: we.db.Sequelize.STRING,
         defaultValue: 'open'
       },
+      // type identifier like event-1-ticket
+      orderTypeIdentifier: {
+        type: we.db.Sequelize.STRING,
+        allowNull: false
+      },
+      // aditional data
+      data: {
+        type: we.db.Sequelize.BLOB,
+        formFieldType: null
+      },
+
+      hookAfterSuccess: {
+        type: we.db.Sequelize.STRING,
+        formFieldType: null,
+        allowNull: false
+      },
+      hookAfterCancel: {
+        type: we.db.Sequelize.STRING,
+        formFieldType: null,
+        allowNull: false
+      }
     },
     associations: {
       customer: { type: 'belongsTo', model: 'user' },

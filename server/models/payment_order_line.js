@@ -28,6 +28,28 @@ module.exports = function (we) {
       modelId: {
         type: we.db.Sequelize.INTEGER,
         allowNull: true
+      },
+      // aditional data
+      data: {
+        type: we.db.Sequelize.BLOB,
+        formFieldType: null
+      },
+
+      // identifier for this order line
+      orderLineIdentifier: {
+        type: we.db.Sequelize.STRING,
+        allowNull: false
+      },
+
+      hookAfterSuccess: {
+        type: we.db.Sequelize.STRING,
+        formFieldType: null,
+        allowNull: false
+      },
+      hookAfterCancel: {
+        type: we.db.Sequelize.STRING,
+        formFieldType: null,
+        allowNull: false
       }
     },
     associations: {
