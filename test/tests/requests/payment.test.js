@@ -43,6 +43,36 @@ describe('payment', function () {
   });
 
   describe('payment-process without shipping', function () {
+    const data = [{
+      sku: 'CAB9-1',
+      name: 'Smartphone Motorola Moto G4 PLUS XT1640 Branco - Dual Chip,Tela 5.5",Câmera 16MP+Frontal 5MP,Octa Core,32GB,2GB RAM,Android 6,Sensor impressão digital',
+      desciption: 'Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.',
+      price: '1469.00',
+      discount: '220.35',
+      quantity: 1
+    }, {
+      sku: 'BCAA-1',
+      name: 'Bicicleta Caloi Andes, Aro 26, 21 marchas, Suspensão Dianteira, V-Brake em alumínio, Preto Fosco - Caloi',
+      description: 'Modelo ideal para passeio ou trilha leve. Quadro com design exclusivo e suspensão frontal que garante uma pedalada confortável.',
+      price: '559.90',
+      discount: '83.98',
+      quantity: 2
+    }];
+    let products = [];
+
+    before(function(done) {
+      we.utils.async.eachSeries(data, (d, next)=> {
+        we.db.models.product
+        .create(d)
+        .then( (p)=> {
+          products.push(p);
+          next();
+          return null;
+        })
+        .catch(next);
+      }, done);
+    });
+
     it('User should list some products from db', function(done) {
       request(http)
       .get('/product')
@@ -56,7 +86,18 @@ describe('payment', function () {
 
         console.log('res.body>', res.body);
 
-        // assert(res.body.page, 'home');
+        assert(res.body.product);
+        assert(res.body.meta);
+        assert.equal(res.body.meta.count, 2, 'Should have 2 records in db');
+        assert.equal(res.body.product.length, 2, 'Should have 2 products');
+        assert.equal(res.body.product[0].sku, data[0].sku);
+        // assert.equal(res.body.product[0].name, data[0].name);
+        assert.equal(res.body.product[0].quantity, data[0].quantity);
+
+        assert.equal(res.body.product[1].sku, data[1].sku);
+        // assert.equal(res.body.product[1].name, data[1].name);
+        assert.equal(res.body.product[1].quantity, data[1].quantity);
+
         done();
       });
     });

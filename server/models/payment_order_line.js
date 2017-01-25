@@ -53,11 +53,16 @@ module.exports = function (we) {
       }
     },
     associations: {
-      order: { type: 'belongsTo', model: 'payment_order' }
+      order: {
+        type: 'belongsTo',
+        model: 'payment_order'
+      }
     },
     options: {
       imageFields: {
-        image: { formFieldMultiple: false }
+        image: {
+          formFieldMultiple: false
+        }
       },
       classMethods: {},
       instanceMethods: {},

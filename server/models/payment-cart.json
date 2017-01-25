@@ -7,7 +7,7 @@
   "associations": {
     "products": {
       "type": "belongsToMany",
-      "model": "payment-product",
+      "model": "product",
       "through": "cartProducts",
       "inverse": "inCard"
     },
@@ -20,4 +20,3 @@
     "afterCreate": []
   }
 }
-
