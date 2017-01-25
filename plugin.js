@@ -57,11 +57,5 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     }
   });
 
-  plugin.addJs('Jquery-Price-Format', {
-    weight: 5, pluginName: 'we-plugin-payment',
-    path: 'files/public/vendor/Jquery-Price-Format.js'
-  });
-
-
   return plugin;
 };
