@@ -1,15 +1,11 @@
 language: node_js
 
 node_js:
-  - '0.12'
+  - 'v6'
 
 services:
   - mysql
 
-addons:
-  apt:
-    packages:
-    - graphicsmagick
 env:
   NODE_ENV: 'test'
 

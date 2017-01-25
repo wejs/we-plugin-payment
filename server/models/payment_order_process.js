@@ -7,7 +7,7 @@
  */
 
 module.exports = function (we) {
-  var model = {
+  const model = {
     definition: {
       gatewayProcesId: {
         type: we.db.Sequelize.INTEGER

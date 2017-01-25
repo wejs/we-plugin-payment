@@ -9,5 +9,5 @@ module.exports = function() {
     if (!value) return '0.00';
 
     return Number(value).toFixed(2);
-  }
-}
+  };
+};

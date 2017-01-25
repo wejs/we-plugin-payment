@@ -1,13 +1,11 @@
-var assert = require('assert');
-var request = require('supertest');
-var helpers = require('we-test-tools').helpers;
-var stubs = require('we-test-tools').stubs;
-var http;
-var we;
-var agent;
+const assert = require('assert'),
+  request = require('supertest'),
+  helpers = require('we-test-tools').helpers,
+  stubs = require('we-test-tools').stubs;
+
+let http, we, agent, salvedUser, salvedUserPassword, authenticatedRequest;
 
 describe('we-plugin-payment-orderFeature', function() {
-  var salvedUser, salvedUserPassword, authenticatedRequest;
 
   before(function (done) {
     http = helpers.getHttp();
@@ -15,8 +13,8 @@ describe('we-plugin-payment-orderFeature', function() {
 
     we = helpers.getWe();
 
-    var userStub = stubs.userStub();
-    helpers.createUser(userStub, function(err, user) {
+    const userStub = stubs.userStub();
+    helpers.createUser(userStub, (err, user)=> {
       if (err) throw err;
 
       salvedUser = user;
@@ -32,10 +30,10 @@ describe('we-plugin-payment-orderFeature', function() {
       })
       .expect(200)
       .set('Accept', 'application/json')
-      .end(function (err) {
+      .end( (err)=> {
         done(err);
       });
-    })
+    });
   });
 
   describe('API', function () {

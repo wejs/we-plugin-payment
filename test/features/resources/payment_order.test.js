@@ -1,21 +1,17 @@
-var assert = require('assert');
-var request = require('supertest');
-var helpers = require('we-test-tools').helpers;
-var stubs = require('we-test-tools').stubs;
-var _;
-var http;
-var we;
+const assert = require('assert'),
+  request = require('supertest'),
+  helpers = require('we-test-tools').helpers,
+  stubs = require('we-test-tools').stubs;
+
+let _, http, we, salvedUser, salvedUserPassword, authenticatedRequest;
 
 describe('payment_orderFeature', function () {
-  var salvedUser, salvedUserPassword;
-  var authenticatedRequest;
-
   before(function (done) {
     http = helpers.getHttp();
     we = helpers.getWe();
     _ = we.utils._;
 
-    var userStub = stubs.userStub();
+    const userStub = stubs.userStub();
     helpers.createUser(userStub, function(err, user) {
       if (err) throw err;
 
@@ -32,12 +28,10 @@ describe('payment_orderFeature', function () {
       })
       .expect(200)
       .set('Accept', 'application/json')
-      .end(function (err, res) {
+      .end(  (err)=> {
         if (err) throw err;
-
         done();
       });
-
     });
   });
 
@@ -66,6 +60,6 @@ describe('payment_orderFeature', function () {
     it('put /payment_order/:id should upate and return payment_order');
   });
   describe('destroy', function () {
-    it('delete /payment_order/:id should delete one payment_order')
+    it('delete /payment_order/:id should delete one payment_order');
   });
 });

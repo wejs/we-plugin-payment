@@ -7,7 +7,7 @@
  */
 
 module.exports = function (we) {
-  var model = {
+  const model = {
     definition: {
       description: { type: we.db.Sequelize.TEXT },
       // total value, sum of all order_line values and freight

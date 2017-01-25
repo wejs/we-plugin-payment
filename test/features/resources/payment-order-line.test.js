@@ -1,20 +1,18 @@
-var assert = require('assert');
-var request = require('supertest');
-var helpers = require('we-test-tools').helpers;
-var stubs = require('we-test-tools').stubs;
-var _ = require('lodash');
-var http;
-var we;
+const assert = require('assert'),
+  request = require('supertest'),
+  helpers = require('we-test-tools').helpers,
+  stubs = require('we-test-tools').stubs,
+  _ = require('lodash');
+
+let http, we, salvedPage, salvedUser, salvedUserPassword, authenticatedRequest;
 
 describe('payment-order-lineFeature', function () {
-  var salvedPage, salvedUser, salvedUserPassword;
-  var authenticatedRequest;
 
   before(function (done) {
     http = helpers.getHttp();
     we = helpers.getWe();
 
-    var userStub = stubs.userStub();
+    const userStub = stubs.userStub();
     helpers.createUser(userStub, function(err, user) {
       if (err) throw err;
 
@@ -31,9 +29,8 @@ describe('payment-order-lineFeature', function () {
       })
       .expect(200)
       .set('Accept', 'application/json')
-      .end(function (err, res) {
+      .end( (err)=> {
         if (err) throw err;
-
         done();
       });
 
@@ -47,8 +44,8 @@ describe('payment-order-lineFeature', function () {
       .set('Accept', 'application/json')
       .end(function (err, res) {
         assert.equal(200, res.status);
-        assert(res.body.payment-order-line);
-        assert( _.isArray(res.body.payment-order-line) , 'payment-order-line not is array');
+        assert(res.body['payment-order-line']);
+        assert( _.isArray(res.body['payment-order-line']) , 'payment-order-line not is array');
         assert(res.body.meta);
 
         done();
@@ -65,6 +62,6 @@ describe('payment-order-lineFeature', function () {
     it('put /payment-order-line/:id should upate and return payment-order-line');
   });
   describe('destroy', function () {
-    it('delete /payment-order-line/:id should delete one payment-order-line')
+    it('delete /payment-order-line/:id should delete one payment-order-line');
   });
 });
