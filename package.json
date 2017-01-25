@@ -7,20 +7,32 @@
     "test": "NODE_ENV=test LOG_LV=info ./node_modules/.bin/mocha test/bootstrap.js test/**/*.test.js"
   },
   "devDependencies": {
+    "express-mysql-session": "^1.2.0",
+    "mysql": "^2.13.0",
     "fs-extra": "^2.0.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "supertest": "^2.0.1",
     "we-core": "wejs/we-core",
+    "we-plugin-auth": "^1.2.0",
+    "we-plugin-user": "^1.1.4",
+    "we-passport-oauth2-password": "^1.0.5",
+    "we-plugin-acl": "^1.2.8",
     "we-test-tools": "wejs/we-test-tools"
   },
   "license": "MIT",
   "author": "Alberto Souza <contato@albertosouza.net>",
   "keywords": [
-    "wejs-plugin"
+    "wejs-plugin",
+    "payment"
   ],
   "wejs": {
-    "dependencies": {
-      "we-plugin-user": true
-    }
+    "plugins": {
+      "we-plugin-user": true,
+      "we-plugin-auth": true,
+      "we-passport-oauth2-password": true,
+      "we-plugin-acl": true
+    },
+    "devPlugins": {}
   }
 }
