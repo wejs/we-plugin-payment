@@ -1,0 +1,23 @@
+{
+  "attributes": {
+    "device": {
+      "type": "text"
+    }
+  },
+  "associations": {
+    "products": {
+      "type": "belongsToMany",
+      "model": "payment-product",
+      "through": "cartProducts",
+      "inverse": "inCard"
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user"
+    }
+  },
+  "hooks": {
+    "afterCreate": []
+  }
+}
+

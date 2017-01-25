@@ -10,6 +10,29 @@ we i we-plugin-payment
 
 ## Development data
 
+Paymento logic:
+
+```
+O produto pode ter dados para as buscas que são associados a cada sub loja que é obrigatóriamente associado a um product
+
+product_search 
+  -> Nx1 product
+  -> NxN Organization
+
+cart 
+  -> NxN Product
+  -> Nx1 User (optional)
+
+payment_order
+  -> 
+
+
+
+
+
+```
+
+
 Buy process:
 
 ```

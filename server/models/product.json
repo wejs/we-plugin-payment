@@ -1,0 +1,20 @@
+{
+  "attributes": {
+    "name": {
+      "type": "STRING",
+      "allowNull": false
+    },
+    "details": {
+      "type": "TEXT"
+    },
+    "description": {
+      "type": "TEXT"
+    }
+  },
+  "associations": {
+
+  },
+  "hooks": {
+    "afterCreate": []
+  }
+}

@@ -44,8 +44,21 @@ describe('payment', function () {
 
   describe('payment-process without shipping', function () {
     it('User should list some products from db', function(done) {
+      request(http)
+      .get('/product')
+      .set('Accept', 'application/json')
+      .expect(200)
+      .end(function (err, res) {
+        if (err) {
+          console.log('res.text>', res.text);
+          return done(err);
+        }
 
-      done();
+        console.log('res.body>', res.body);
+
+        // assert(res.body.page, 'home');
+        done();
+      });
     });
 
     it('User should add 1 product in cart');
