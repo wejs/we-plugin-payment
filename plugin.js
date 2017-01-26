@@ -35,16 +35,16 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     },
 
     // API
-    'post /cart/add-item': {
-      controller: 'payment_order',
-      action: 'create',
-      responseType: 'json'
-    },
-    'post /cart/remove-item/:id': {
-      controller: 'payment_order',
-      action: 'delete',
-      responseType: 'json'
-    },
+    // 'post /cart/add-item': {
+    //   controller: 'payment-cart',
+    //   action: 'create',
+    //   responseType: 'json'
+    // },
+    // 'post /cart/remove-item/:id': {
+    //   controller: 'payment_order',
+    //   action: 'delete',
+    //   responseType: 'json'
+    // },
     'post /order/create': {
       controller: 'payment_order',
       action: 'create',

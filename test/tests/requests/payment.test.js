@@ -73,39 +73,83 @@ describe('payment', function () {
       }, done);
     });
 
-    it('User should list some products from db', function(done) {
-      request(http)
-      .get('/product')
-      .set('Accept', 'application/json')
-      .expect(200)
-      .end(function (err, res) {
-        if (err) {
-          console.log('res.text>', res.text);
-          return done(err);
+    it('User should get 2 diferent products and pay for it', function(done) {
+
+      we.utils.async.series([
+        // 'User should list some products from db'
+        function listProducts(done) {
+          authenticatedRequest
+          .get('/product')
+          .set('Accept', 'application/json')
+          .expect(200)
+          .end(function (err, res) {
+            if (err) {
+              console.log('res.text>', res.text);
+              return done(err);
+            }
+
+            // console.log('res.body>', res.body);
+
+            assert(res.body.product);
+            assert(res.body.meta);
+            assert.equal(res.body.meta.count, 2, 'Should have 2 records in db');
+            assert.equal(res.body.product.length, 2, 'Should have 2 products');
+            assert.equal(res.body.product[0].sku, data[0].sku);
+            // assert.equal(res.body.product[0].name, data[0].name);
+            assert.equal(res.body.product[0].quantity, data[0].quantity);
+
+            assert.equal(res.body.product[1].sku, data[1].sku);
+            // assert.equal(res.body.product[1].name, data[1].name);
+            assert.equal(res.body.product[1].quantity, data[1].quantity);
+
+            done();
+          });
+        },
+        //
+        // function AddOneProductInCart(done) {
+        //   authenticatedRequest
+        //   .psot('/cart/add-item')
+        //   .set('Accept', 'application/json')
+        //   .send({
+
+        //   })
+        //   .expect(200)
+        //   .end(function (err, res) {
+        //     if (err) {
+        //       console.log('res.text>', res.text);
+        //       return done(err);
+        //     }
+
+        //     console.log('res.body>', res.body);
+
+        //     assert(res.body.product);
+        //     assert(res.body.meta);
+        //     assert.equal(res.body.meta.count, 2, 'Should have 2 records in db');
+        //     assert.equal(res.body.product.length, 2, 'Should have 2 products');
+        //     assert.equal(res.body.product[0].sku, data[0].sku);
+        //     // assert.equal(res.body.product[0].name, data[0].name);
+        //     assert.equal(res.body.product[0].quantity, data[0].quantity);
+
+        //     assert.equal(res.body.product[1].sku, data[1].sku);
+        //     // assert.equal(res.body.product[1].name, data[1].name);
+        //     assert.equal(res.body.product[1].quantity, data[1].quantity);
+
+        //     done();
+        //   });
+        // },
+        function listPaymentOptions(done) {
+
+          done();
         }
 
-        console.log('res.body>', res.body);
+      ], done);
 
-        assert(res.body.product);
-        assert(res.body.meta);
-        assert.equal(res.body.meta.count, 2, 'Should have 2 records in db');
-        assert.equal(res.body.product.length, 2, 'Should have 2 products');
-        assert.equal(res.body.product[0].sku, data[0].sku);
-        // assert.equal(res.body.product[0].name, data[0].name);
-        assert.equal(res.body.product[0].quantity, data[0].quantity);
-
-        assert.equal(res.body.product[1].sku, data[1].sku);
-        // assert.equal(res.body.product[1].name, data[1].name);
-        assert.equal(res.body.product[1].quantity, data[1].quantity);
-
-        done();
-      });
     });
 
-    it('User should add 1 product in cart');
-    it('User should add 2 products in cart');
-    it('User should list all products in card');
-    it('User should skip shipping process');
+    // it('User should add 1 product in cart');
+    // it('User should add 2 products in cart');
+    // it('User should list all products in card');
+    // it('User should skip shipping process');
     it('User should list payment options');
     it('User should select one payment option');
     it('User should get payment report data');
