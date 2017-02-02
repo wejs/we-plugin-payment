@@ -50,12 +50,12 @@ module.exports = function (we) {
       customer: { type: 'belongsTo', model: 'user' },
       lines: {
         type: 'hasMany',
-        model: 'payment_order_line',
+        model: 'payment-order-line',
         inverse: 'order'
       },
       processes: {
         type: 'hasMany',
-        model: 'payment_order_process',
+        model: 'payment-order-process',
         inverse: 'order'
       }
     },

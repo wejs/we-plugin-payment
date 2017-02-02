@@ -27,7 +27,7 @@ module.exports = function (we) {
       }
     },
     associations: {
-      order: { type: 'belongsTo', model: 'payment_order' }
+      order: { type: 'belongsTo', model: 'payment-order' }
     },
     options: {
       classMethods: {},

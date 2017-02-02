@@ -5,7 +5,7 @@ const assert = require('assert'),
 
 let _, http, we, salvedUser, salvedUserPassword, authenticatedRequest;
 
-describe('payment_orderFeature', function () {
+describe('payment-orderFeature', function () {
   before(function (done) {
     http = helpers.getHttp();
     we = helpers.getWe();

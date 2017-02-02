@@ -31,7 +31,8 @@
       "we-plugin-user": true,
       "we-plugin-auth": true,
       "we-passport-oauth2-password": true,
-      "we-plugin-acl": true
+      "we-plugin-acl": true,
+      "we-plugin-paypal": true
     },
     "devPlugins": {}
   }

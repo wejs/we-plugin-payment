@@ -3,6 +3,10 @@
  *
  * see http://wejs.org/docs/we/plugin
  */
+
+
+const PaymentGateway = require('./lib/PaymentGateway.js');
+
 module.exports = function loadPlugin(projectPath, Plugin) {
   const plugin = new Plugin(__dirname);
 
@@ -21,17 +25,15 @@ module.exports = function loadPlugin(projectPath, Plugin) {
 
     // get open cart orders
     'get /cart': {
-      controller: 'payment_order',
+      controller: 'payment-order',
       action: 'findOpenOrders',
-      model: 'payment_order',
-      template: 'payment_order/cart'
+      model: 'payment-order'
     },
     // all orders how dont are open
     'get /orders': {
-      controller: 'payment_order',
+      controller: 'payment-order',
       action: 'find',
-      model: 'payment_order',
-      template: 'payment_order/orders'
+      model: 'payment-order'
     },
 
     // API
@@ -46,16 +48,22 @@ module.exports = function loadPlugin(projectPath, Plugin) {
     //   responseType: 'json'
     // },
     'post /order/create': {
-      controller: 'payment_order',
+      controller: 'payment-order',
       action: 'create',
       responseType: 'json'
     },
     'get /payment/callback/:orderId': {
-      controller: 'payment_order',
+      controller: 'payment-order',
       action: 'cancelOrReturnCallback',
       responseType: 'json'
     }
   });
+
+  plugin.gateways = {};
+
+  plugin.registerGateway = function registerGateway(opts) {
+    plugin.gateways[name] = new PaymentGateway(opts.name, opts);
+  };
 
   return plugin;
 };
